@@ -30,4 +30,5 @@ COPY uwsgi/wsgi.py .
 COPY uwsgi/requirements.txt ./requirements-uwsgi.txt
 RUN pip3 install -r requirements-uwsgi.txt
 
-CMD uwsgi --socket 0.0.0.0:$FLASK_PORT --protocol=http -w wsgi:app
+COPY uwsgi/settings.ini .
+CMD uwsgi --socket 0.0.0.0:$FLASK_PORT settings.ini

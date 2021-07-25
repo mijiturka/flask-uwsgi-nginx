@@ -8,6 +8,8 @@ Meant for deployment on Linode; may include some infrastructure-as-code later
 Draws inspiration from
 * https://github.com/abalarin/Flask-on-Linode
 * https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-xvii-deployment-on-linux
+* https://uwsgi-docs.readthedocs.io/en/latest/WSGIquickstart.html
+* https://www.digitalocean.com/community/tutorials/how-to-serve-flask-applications-with-uwsgi-and-nginx-on-ubuntu-20-04
 
 Why uWSGI over e.g gunicorn?
 * It's faster and more reliable: https://blog.kgriffs.com/2012/12/18/uwsgi-vs-gunicorn-vs-node-benchmarks.html
