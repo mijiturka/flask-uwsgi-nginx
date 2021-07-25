@@ -3,7 +3,7 @@ Basic Flask setup with uWSGI and NGINX
 * Docker for local development
 * Straight on server for deployment
 
-Meant for deployment on Linode; may include some infrastructure-as-code later
+Meant for deployment on Linode; some bash scripts currently provided - may include some fancier infrastructure-as-code later
 
 Draws inspiration from
 * https://github.com/abalarin/Flask-on-Linode
@@ -14,7 +14,7 @@ Draws inspiration from
 Why uWSGI over e.g gunicorn?
 * It's faster and more reliable: https://blog.kgriffs.com/2012/12/18/uwsgi-vs-gunicorn-vs-node-benchmarks.html
 
-# Locally
+# Deploy locally
 
 ## Build
 ```
@@ -36,4 +36,37 @@ $ sudo docker rm server && sudo docker run --name server -it server_image
 $ sudo docker exec -it server /bin/bash
 # curl localhost:8000
 You reached it!!!
+```
+
+# Deploy on Linode
+
+Try this out and use it as a basis for fancier infrastructure configuration in the future...
+
+on local:
+```
+$ export LINODE_USER=<user>
+$ export LINODE_IP=<ip>
+$ scp -r deploy $LINODE_USER@$LINODE_IP:/home
+```
+
+on node:
+```
+$ export FLASK_PORT=8000
+$ cd /home/deploy
+$ bash prepare.sh
+```
+
+on local:
+```
+$ bash deploy/copy.sh
+```
+
+on node:
+```
+$ bash configure.sh
+```
+
+## Test
+```
+$ curl http://$LINODE_IP/
 ```
