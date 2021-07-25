@@ -13,6 +13,8 @@ RUN pip3 install -r requirements-flask.txt
 
 COPY flask/main.py .
 
+RUN apt-get -y install nginx
+
 ARG FLASK_PORT=8000
 ENV FLASK_PORT=$FLASK_PORT
 
@@ -31,4 +33,13 @@ COPY uwsgi/requirements.txt ./requirements-uwsgi.txt
 RUN pip3 install -r requirements-uwsgi.txt
 
 COPY uwsgi/settings.ini .
-CMD uwsgi --socket 0.0.0.0:$FLASK_PORT settings.ini
+# Run via uWSGI directly
+# CMD uwsgi --socket 0.0.0.0:$FLASK_PORT settings.ini
+
+
+# Run via NGINX
+COPY nginx/settings.conf .
+COPY nginx/nginx.sh .
+RUN /bin/bash nginx.sh
+
+CMD nginx && uwsgi --socket 0.0.0.0:$FLASK_PORT settings.ini
