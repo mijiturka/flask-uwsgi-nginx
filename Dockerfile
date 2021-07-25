@@ -8,10 +8,10 @@ RUN apt-get -y install python3 python3-pip
 RUN apt-get -y install curl
 
 WORKDIR /app
-COPY requirements.txt requirements-deployment.txt /app/
-RUN pip3 install -r requirements-deployment.txt
+COPY flask/requirements.txt ./requirements-flask.txt
+RUN pip3 install -r requirements-flask.txt
 
-COPY main.py /app
+COPY flask/main.py .
 
 ARG FLASK_PORT=8000
 ENV FLASK_PORT=$FLASK_PORT
@@ -19,10 +19,15 @@ ENV FLASK_PORT=$FLASK_PORT
 # Just run a shell
 # CMD ["/bin/bash"]
 
+
 # Run Flask directly
-# ENV FLASK_APP=main.py
+# ENV FLASK_APP=flask/main.py
 # CMD flask run --port $FLASK_PORT
 
+
 # Run via uWSGI
-COPY wsgi.py /app
+COPY uwsgi/wsgi.py .
+COPY uwsgi/requirements.txt ./requirements-uwsgi.txt
+RUN pip3 install -r requirements-uwsgi.txt
+
 CMD uwsgi --socket 0.0.0.0:$FLASK_PORT --protocol=http -w wsgi:app
