@@ -7,7 +7,7 @@ RUN apt-get -y install python3 python3-pip
 # Not required, but convenient for testing
 RUN apt-get -y install curl
 
-WORKDIR /app
+WORKDIR /home/root/app
 COPY flask/requirements.txt ./requirements-flask.txt
 RUN pip3 install -r requirements-flask.txt
 

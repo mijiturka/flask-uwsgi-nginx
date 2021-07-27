@@ -46,23 +46,13 @@ on local:
 ```
 $ export LINODE_USER=<user>
 $ export LINODE_IP=<ip>
-$ scp -r deploy $LINODE_USER@$LINODE_IP:/home
-```
-
-on node:
-```
-$ export FLASK_PORT=8000
-$ cd /home/deploy
-$ bash prepare.sh
-```
-
-on local:
-```
 $ bash deploy/copy.sh
 ```
 
 on node:
 ```
+$ export FLASK_PORT=8000
+$ cd ~/deploy
 $ bash configure.sh
 ```
 

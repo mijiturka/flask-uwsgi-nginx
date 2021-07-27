@@ -1,10 +1,17 @@
 #!/bin/bash
 set eux pipefail
 
-scp flask/* ${LINODE_USER}@${LINODE_IP}:/home/app
-scp uwsgi/* ${LINODE_USER}@${LINODE_IP}:/home/app
-scp nginx/* ${LINODE_USER}@${LINODE_IP}:/home/app
+TARGET_DIR="/home/${LINODE_USER}/app"
+SETUP_DIR="/home/${LINODE_USER}/setup"
 
-# Sticking everything in one folder was a great decision
-scp flask/requirements.txt ${LINODE_USER}@${LINODE_IP}:/home/app/requirements-flask.txt
-scp uwsgi/requirements.txt ${LINODE_USER}@${LINODE_IP}:/home/app/requirements-uwsgi.txt
+ssh ${LINODE_USER}@${LINODE_IP} "mkdir -p ${TARGET_DIR} ${SETUP_DIR}"
+
+scp -r ../deploy $LINODE_USER@$LINODE_IP:${SETUP_DIR}
+
+scp flask/* ${LINODE_USER}@${LINODE_IP}:${TARGET_DIR}
+scp uwsgi/* ${LINODE_USER}@${LINODE_IP}:${TARGET_DIR}
+scp nginx/* ${LINODE_USER}@${LINODE_IP}:${TARGET_DIR}
+
+# Sticking everything in one DIR was a great decision
+scp flask/requirements.txt ${LINODE_USER}@${LINODE_IP}:${TARGET_DIR}/requirements-flask.txt
+scp uwsgi/requirements.txt ${LINODE_USER}@${LINODE_IP}:${TARGET_DIR}/requirements-uwsgi.txt
