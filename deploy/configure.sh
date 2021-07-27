@@ -1,5 +1,5 @@
 #!/bin/bash
-set eux pipefail
+set -eux pipefail
 
 apt-get -y update && apt-get -y upgrade
 apt-get -y install python3 python3-pip

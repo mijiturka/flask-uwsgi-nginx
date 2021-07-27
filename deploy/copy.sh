@@ -1,5 +1,5 @@
 #!/bin/bash
-set eux pipefail
+set -eux pipefail
 
 TARGET_DIR="/home/${LINODE_USER}/app"
 SETUP_DIR="/home/${LINODE_USER}/setup"
