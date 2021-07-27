@@ -39,7 +39,7 @@ COPY uwsgi/settings.ini .
 
 # Run via NGINX
 COPY nginx/settings.conf .
-COPY nginx/nginx.sh .
-RUN /bin/bash nginx.sh
+COPY nginx/configure.sh .
+RUN /bin/bash configure.sh
 
 CMD nginx && uwsgi --socket 0.0.0.0:$FLASK_PORT settings.ini
