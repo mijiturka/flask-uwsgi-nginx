@@ -26,11 +26,8 @@ ENV FLASK_PORT=$FLASK_PORT
 COPY server/uwsgi/ ./uwsgi
 RUN pip3 install -r uwsgi/requirements.txt
 
-# Just run a shell
-# CMD ["/bin/bash"]
-
-# ## Run via uWSGI directly
-# CMD uwsgi --socket 0.0.0.0:$FLASK_PORT uwsgi/settings.ini
+# Run via uWSGI directly
+# CMD uwsgi --protocol http --socket 0.0.0.0:$FLASK_PORT uwsgi/settings.ini
 
 
 # Run via NGINX
