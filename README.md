@@ -21,9 +21,9 @@ Why uWSGI over e.g gunicorn?
 $ sudo docker build -t server_image .
 ```
 
-Or, to set the port:
+Or, to set the port to something other than 8000:
 ```
-$ sudo docker build -t --build-arg FLASK_PORT=6000 server_image .
+$ sudo docker build --build-arg FLASK_PORT=6000 -t server_image .
 ```
 
 ## Run
