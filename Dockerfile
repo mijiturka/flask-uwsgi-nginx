@@ -3,7 +3,7 @@ FROM debian:10
 RUN apt-get update && apt-get upgrade
 RUN apt-get -y install python3 python3-pip
 # Not required, but convenient for testing
-RUN apt-get -y install curl
+RUN apt-get -y install curl nano
 
 WORKDIR /server
 

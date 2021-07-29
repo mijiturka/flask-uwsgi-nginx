@@ -3,4 +3,6 @@
 * supervisor
 * ufw
 
-* test structure changes on local and remote
+* test structure changes on remote
+
+* split options for running into distinct Dockerfiles
