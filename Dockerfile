@@ -34,7 +34,7 @@ RUN pip3 install -r requirements-uwsgi.txt
 
 COPY uwsgi/settings.ini .
 # Run via uWSGI directly
-# CMD uwsgi --socket 0.0.0.0:$FLASK_PORT settings.ini
+# CMD uwsgi --protocol http --socket 0.0.0.0:$FLASK_PORT settings.ini
 
 
 # Run via NGINX
