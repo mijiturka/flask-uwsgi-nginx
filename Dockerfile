@@ -32,7 +32,9 @@ RUN pip3 install -r uwsgi/requirements.txt
 
 # Run via NGINX
 COPY server/nginx/ ./nginx
+WORKDIR ./nginx
 RUN apt-get -y install nginx
-RUN /bin/bash nginx/configure.sh
+RUN /bin/bash configure.sh
+WORKDIR ..
 
 CMD nginx && uwsgi --socket 0.0.0.0:$FLASK_PORT uwsgi/settings.ini
