@@ -46,14 +46,15 @@ on local:
 ```
 $ export LINODE_USER=<user>
 $ export LINODE_IP=<ip>
-$ bash deploy/copy.sh
+$ cd deploy
+$ bash copy.sh
 ```
 
 on node:
 ```
 $ export FLASK_PORT=8000
-$ cd ~/deploy
-$ bash configure.sh
+$ cd /setup/deploy
+$ bash startup.sh
 ```
 
 ## Test
