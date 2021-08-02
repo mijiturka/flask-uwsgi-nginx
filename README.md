@@ -34,8 +34,14 @@ $ sudo docker rm server && sudo docker run --name server -it server_image
 ## Test
 ```
 $ sudo docker exec -it server /bin/bash
-# curl localhost:8000
-You reached it!!!
+# curl localhost:8000/api
+{'message': 'You reached it!!!'}
+```
+
+If using nginx, you'll also get everything under server/static served statically at / :
+```
+# curl localhost:8000/
+<html> ...
 ```
 
 # Deploy on Linode
@@ -60,4 +66,5 @@ $ bash startup.sh
 ## Test
 ```
 $ curl http://$LINODE_IP/
+$ curl http://$LINODE_IP/api
 ```
