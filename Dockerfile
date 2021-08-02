@@ -7,6 +7,7 @@ RUN apt-get -y install curl nano
 
 WORKDIR /server
 
+COPY server/static ./static
 COPY server/app/ ./app
 RUN pip3 install -r app/requirements.txt
 
